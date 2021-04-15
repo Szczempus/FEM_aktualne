@@ -137,9 +137,32 @@ def Exc_no_1():
 
 
 def Exc_no_2():
-    first = np.linspace(start=1, stop=5, num=1)
-    second = first[::-1]
-    third = np.zeros(shape=(2, 3))
+    first = np.linspace(start=1, stop=5, num=5)
+    second = np.linspace(start=5, stop=1, num=5)
+    third = np.zeros(shape=(3, 2))
+    fourth = np.full((2, 3), 2)
+    fifth = np.linspace(start=-90, stop=-70, num=3)
+    sixth = np.full((5, 1), 10)
+
+    full = np.block([[fourth], [fifth]])
+    full = np.block([third, full])
+    temp = np.block([[first], [second]])
+    full = np.block([[temp], [full]])
+    mocnyfull = np.block([full, sixth])
+    print(f"{mocnyfull}\n\t")
+    return mocnyfull
+
+
+def Exc_no_3():
+    matrix = Exc_no_2()
+    matrix_add = matrix[1] + matrix[3]
+    print(f"{matrix_add}\n\t")
+
+
+def Exc_no_4():
+    matrix = Exc_no_2()
+    matrix_zip = list(map(np.max, zip(*matrix)))
+    print(f"{matrix_zip}\n\t")
 
 
 def choose(x):
@@ -147,6 +170,10 @@ def choose(x):
         Exc_no_1()
     elif x == 2:
         Exc_no_2()
+    elif x == 3:
+        Exc_no_3()
+    elif x == 4:
+        Exc_no_4()
     else:
         quit()
 
@@ -156,8 +183,9 @@ def main():
         print("Witaj w konsolowym nawigatorze zadań\n\t Przed tobą menu wyboru: \n\t "
               "1. Zadanie 2,\n\t "
               "2. Zadanie 3,\n\t "
-              "3. Quit. ")
-
+              "3. Zadanie 4,\n\t "
+              "4. Zadanie 5,\n\t "
+              "5. Quit.")
         chose = int(input("Który skrypt wybierasz?: "))
 
         choose(chose)
