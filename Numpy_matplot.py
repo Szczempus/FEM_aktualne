@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 from tabulate import tabulate
 
 
@@ -134,6 +134,30 @@ def Exc_no_1():
     print(np.logical_or(v > 4, v < 2))
     print(np.nonzero(v > 4))
     print(v[np.nonzero(v > 4)])
+
+    x = np.arange(0.0, 2.0, 0.01)
+    y1 = np.sin(2.0 * np.pi * x)
+    y2 = np.cos(2.0 * np.pi * x)
+    plt.plot(x, y1,'r:', x, y2,'g')
+    plt.legend(('dane y1', 'dane y2'))
+    plt.xlabel('Czas')
+    plt.ylabel('Pozycja')
+    plt.title('Wykres ')
+    plt.grid(True)
+    plt.show()
+
+    x = np.arange(0.0, 2.0, 0.01)
+    y1 = np.sin(2.0 * np.pi * x)
+    y2 = np.cos(2.0 * np.pi * x)
+    y = y1 * y2
+    l1, = plt.plot(x, y,'b')
+    l2, l3 = plt.plot(x, y1,'r:', x, y2,'g')
+    plt.legend((l2, l3, l1), ('dane y1', 'dane y2', 'y1 * y2'))
+    plt.xlabel('Czas')
+    plt.ylabel('Pozycja')
+    plt.title('Wykres')
+    plt.grid(True)
+    plt.show()
 
 
 def Exc_no_2():
