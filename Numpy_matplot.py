@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tabulate import tabulate
 import zadanie_15
+from scipy import integrate
 
 
 def Exc_no_1():
@@ -135,6 +136,16 @@ def Exc_no_1():
     print(np.logical_or(v > 4, v < 2))
     print(np.nonzero(v > 4))
     print(v[np.nonzero(v > 4)])
+
+    f1 = lambda x: x ** 2
+    f2 = lambda x: x
+    f3 = lambda a, x: a * x ** 2
+
+    f_podcalkowa = lambda x: f1(x) + f2(x) + f3(1, x)
+
+    calka, blad = integrate.quad(f_podcalkowa, 0, 1)
+    print("calka = " + str(calka))
+    print("blad oszacowania = " + str(blad))
 
     x = np.arange(0.0, 2.0, 0.01)
     y1 = np.sin(2.0 * np.pi * x)
@@ -293,8 +304,10 @@ def Exc_no_15(x):
 
 
 def Exc_no_17(x):
+    y1 = Exc_no_14(x)
+    y2 = Exc_no_15(x)
     y3 = 3 * Exc_no_14(x) + zadanie_15.Exc_no_15(x)
-    plt.plot(x, y3, 'b*')
+    plt.plot(x, y3, 'b*', x, y2, 'g+', x, y1, 'r--')
     plt.show()
     return y3
 
@@ -306,12 +319,23 @@ def Exc_no_18():
     print(X)
 
 
+def Exc_no_19():
+    i = 1000000
+    x = np.linspace(0, 2 * np.pi, i)
+    f = lambda x: np.sin(x)
+    calka, blad = integrate.quad(f, 0, 2 * np.pi)
+    print("calka = " + str(calka))
+    print("blad oszacowania = " + str(blad))
+
+    return
+
+
 def choose(x):
-    if x == 2:
+    if x == 1:
         Exc_no_1()
-    elif x == 3:
+    elif x == 2:
         Exc_no_2()
-    elif x == 4:
+    elif x == 3:
         Exc_no_3()
     elif x == 5:
         Exc_no_5()
@@ -354,6 +378,8 @@ def choose(x):
         Exc_no_17(x)
     elif x == 18:
         Exc_no_18()
+    elif x == 19:
+        Exc_no_19()
     else:
         quit()
 
@@ -361,12 +387,24 @@ def choose(x):
 def main():
     while True:
         print("Witaj w konsolowym nawigatorze zadań\n\t Przed tobą menu wyboru: \n\t "
-              "2. Exc_no_2,\n\t "
-              "3. Exc_no_3,\n\t "
-              "4. Zadanie 4,\n\t "
-              "5. Zadanie 5,\n\t "
-              "5. Quit.")
-        chose = int(input("Który skrypt wybierasz?: "))
+              "2. Exc_no_2 - zadanie 2\n\t "
+              "3. Exc_no_3 - zadanie 3\n\t "
+              "5. Exc_no_5 - zadanie 5,\n\t "
+              "6. Exc_no_6 - zadanie 6,\n\t "
+              "7. Exc_no_7 - zadanie 7,\n\t "
+              "8. Exc_no_8 - zadanie 8,\n\t "
+              "9. Exc_no_9 - zadanie 9,\n\t "
+              "10. Exc_no_10 - zadanie 10,\n\t "
+              "11. Exc_no_11 - zadanie 11,\n\t "
+              "12. Exc_no_12 - zadanie 12,\n\t "
+              "13. Exc_no_13 - zadanie 13,\n\t "
+              "14. Exc_no_14 - zadanie 14,\n\t "
+              "15. Exc_no_15 - zadanie 15,\n\t "
+              "17. Exc_no_17 - zadanie 17,\n\t "
+              "18. Exc_no_18 - zadanie 18,\n\t "
+              "19. Exc_no_19 - zadanie 19,\n\t "          
+              "20. Quit.")
+        chose = int(input("Który skrypt wybierasz? "))
 
         choose(chose)
     return
